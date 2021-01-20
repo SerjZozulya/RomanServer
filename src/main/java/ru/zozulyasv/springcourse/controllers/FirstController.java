@@ -9,4 +9,8 @@ public class FirstController {
     public String helloPage() {
         return "first/hello";
     }
+    @GetMapping("/goodbye")
+    public String goodbyePage(){
+        return  "first/goodbye";
+    }
 }
