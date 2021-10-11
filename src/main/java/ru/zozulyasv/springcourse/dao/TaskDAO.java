@@ -1,15 +1,15 @@
 package ru.zozulyasv.springcourse.dao;
 
 import org.springframework.stereotype.Component;
-import ru.zozulyasv.springcourse.models.Person;
+import ru.zozulyasv.springcourse.models.Task;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class PersonDAO {
-    private static int PEOPLE_COUNT;
+public class TaskDAO {
+    private static int TASK_COUNT;
 
     private static final String URL = "jdbc:postgresql://localhost:5432/my_db";
     private static final String USERNAME = "postgres";
@@ -31,66 +31,69 @@ public class PersonDAO {
         }
     }
 
-    public List<Person> index(){
-        List<Person> people = new ArrayList<>();
+    public List<Task> index(){
+        List<Task> taskList = new ArrayList<>();
 
         try {
             Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM Person";
+            String SQL = "SELECT * FROM tasks";
             ResultSet resultSet = statement.executeQuery(SQL);
 
             while (resultSet.next()) {
-                Person person = new Person();
+                Task task = new Task();
 
-                person.setId(resultSet.getInt("id"));
-                person.setName(resultSet.getString("name"));
-                person.setEmail(resultSet.getString("email"));
-                person.setAge(resultSet.getInt("age"));
-
-                people.add(person);
+                task.setId(resultSet.getInt("id"));
+                task.setText(resultSet.getString("text"));
+                task.setType(resultSet.getString("type"));
+                task.setPubDate(resultSet.getString("pubDate"));
+                task.setStatus(resultSet.getString("status"));
+                task.setTime(resultSet.getString("time"));
+                taskList.add(task);
             }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return people;
+        return taskList;
     }
 
-    public Person show(int id) {
+    public Task show(int id) {
 
-        Person person = null;
+        Task task = null;
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Person WHERE id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM tasks WHERE id = ?");
 
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             resultSet.next();
 
-            person= new Person();
-            person.setId(resultSet.getInt("id"));
-            person.setName(resultSet.getString("name"));
-            person.setAge(resultSet.getInt("age"));
-            person.setEmail(resultSet.getString("email"));
+            task= new Task();
+            task.setId(resultSet.getInt("id"));
+            task.setType(resultSet.getString("type"));
+            task.setPubDate(resultSet.getString("pubDate"));
+            task.setStatus(resultSet.getString("status"));
+            task.setText(resultSet.getString("text"));
+            task.setTime(resultSet.getString("time"));
 
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        return person;
+        return task;
     }
 
-    public void save(Person person){
+    public void save(Task task){
 
         try {
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("INSERT INTO Person VALUES (1, ?, ?, ?)");
+                    connection.prepareStatement("INSERT INTO tasks VALUES (1, ?, ?, ?)");
 
-            preparedStatement.setString(1, person.getName());
-            preparedStatement.setInt(2, person.getAge());
-            preparedStatement.setString(3, person.getEmail());
+            preparedStatement.setString(1, task.getType());
+            preparedStatement.setString(2, task.getStatus());
+            preparedStatement.setString(3, task.getText());
 
             preparedStatement.executeUpdate();
 
@@ -99,17 +102,17 @@ public class PersonDAO {
         }
     }
 
-    public void update(int id, Person updatedPerson) {
+    public void update(int id, Task updatedTask) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "UPDATE Person " +
-                    "SET name=?, age=?, email=?" +
+                    "UPDATE tasks " +
+                    "SET text=?, type=?, pubDate=?, status=?, time=?" +
                     "WHERE id = ?");
 
-            preparedStatement.setString(1, updatedPerson.getName());
-            preparedStatement.setInt(2, updatedPerson.getAge());
-            preparedStatement.setString(3, updatedPerson.getEmail());
-            preparedStatement.setInt(4, updatedPerson.getId());
+            preparedStatement.setString(1, updatedTask.getType());
+            preparedStatement.setString(2, updatedTask.getStatus());
+            preparedStatement.setString(3, updatedTask.getText());
+            preparedStatement.setInt(4, updatedTask.getId());
             preparedStatement.executeUpdate();
 
         } catch (SQLException throwables) {
@@ -120,7 +123,7 @@ public class PersonDAO {
     public void delete(int id) {
         try {
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("DELETE FROM person WHERE  id = ?");
+                    connection.prepareStatement("DELETE FROM tasks WHERE  id = ?");
 
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
