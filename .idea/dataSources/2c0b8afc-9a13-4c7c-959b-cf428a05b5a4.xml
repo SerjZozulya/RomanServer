@@ -789,8 +789,10 @@ false Zulu
     <database id="2" parent="1" name="my_db">
       <ObjectId>16394</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>548</IntrospectionStateNumber>
+      <IntrospectionStateNumber>630</IntrospectionStateNumber>
       <Current>1</Current>
+      <Relations>sequence|table|24595|16395|7
+</Relations>
     </database>
     <database id="3" parent="1" name="postgres">
       <ObjectId>13442</ObjectId>
@@ -865,7 +867,7 @@ UC/10
 </Acl>
       <StateNumber>287</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>549</IntrospectionStateNumber>
+      <IntrospectionStateNumber>631</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="18" parent="2" name="plpgsql">
@@ -965,46 +967,80 @@ UC/10
       <HandlerId>335</HandlerId>
       <Type>index</Type>
     </access-method>
-    <table id="30" parent="17" name="tasks">
+    <sequence id="30" parent="17" name="tasks_id_seq">
+      <ObjectId>24595</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>627</StateNumber>
+      <DataType>integer|0s</DataType>
+    </sequence>
+    <table id="31" parent="17" name="tasks">
       <ObjectId>16395</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>547</StateNumber>
+      <StateNumber>627</StateNumber>
     </table>
-    <column id="31" parent="30" name="id">
-      <Position>1</Position>
-      <DataType>integer|0s</DataType>
-      <StateNumber>488</StateNumber>
-      <TypeId>23</TypeId>
-    </column>
-    <column id="32" parent="30" name="type">
+    <column id="32" parent="31" name="taskType">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
-      <StateNumber>518</StateNumber>
+      <StateNumber>552</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="33" parent="30" name="pubDate">
+    <column id="33" parent="31" name="pubDate">
       <Position>3</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>544</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="34" parent="30" name="status">
+    <column id="34" parent="31" name="status">
       <Position>4</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>521</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="35" parent="30" name="text">
+    <column id="35" parent="31" name="text">
       <Position>5</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>535</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="36" parent="30" name="time">
+    <column id="36" parent="31" name="time">
       <Position>6</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>547</StateNumber>
       <TypeId>1043</TypeId>
     </column>
+    <column id="37" parent="31" name="id">
+      <Position>7</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>627</StateNumber>
+      <DefaultExpression>nextval(&apos;tasks_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+    </column>
+    <index id="38" parent="31" name="tasks_id_uindex">
+      <ObjectId>24604</ObjectId>
+      <StateNumber>628</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>0</CollationIds>
+      <ClassIds>1978</ClassIds>
+    </index>
+    <index id="39" parent="31" name="tasks_pk">
+      <ObjectId>24605</ObjectId>
+      <StateNumber>629</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>0</CollationIds>
+      <ClassIds>1978</ClassIds>
+    </index>
+    <key id="40" parent="31" name="tasks_pk">
+      <ObjectId>24606</ObjectId>
+      <StateNumber>629</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>tasks_pk</UnderlyingIndexName>
+    </key>
   </database-model>
 </dataSource>

@@ -2,7 +2,7 @@ package ru.zozulyasv.springcourse.models;
 
 public class Task {
     private int id;
-    private String type;
+    private String taskType;
     private String pubDate;
     private String status;
     private String text;
@@ -12,9 +12,9 @@ public class Task {
 
     }
 
-    public Task(int id, String type, String pubDate, String status, String text, String time) {
+    public Task(int id, String taskType, String pubDate, String status, String text, String time) {
         this.id = id;
-        this.type = type;
+        this.taskType = taskType;
         this.pubDate = pubDate;
         this.status = status;
         this.text = text;
@@ -45,10 +45,10 @@ public class Task {
         this.id = id;
     }
 
-    public String getType() {return type;}
+    public String getType() {return taskType;}
 
     public void setType(String type) {
-        this.type = type;
+        this.taskType = type;
     }
 
     public String getPubDate() {
