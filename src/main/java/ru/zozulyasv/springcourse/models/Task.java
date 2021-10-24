@@ -7,18 +7,26 @@ public class Task {
     private String status;
     private String text;
     private String time;
+    private int projectId;
 
     public Task() {
 
     }
 
-    public Task(int id, String taskType, String pubDate, String status, String text, String time) {
+    public Task(int id,
+        String taskType,
+        String pubDate,
+        String status,
+        String text,
+        String time,
+        int projectId) {
         this.id = id;
         this.taskType = taskType;
         this.pubDate = pubDate;
         this.status = status;
         this.text = text;
         this.time = time;
+        this.projectId = projectId;
     }
 
     public String getStatus() {
@@ -66,5 +74,9 @@ public class Task {
     public void setTime(String time) {
         this.time = time;
     }
+
+    public int getProjectId() {return projectId;}
+
+    public void setProjectId(int id) {this.projectId = id;}
 
 }

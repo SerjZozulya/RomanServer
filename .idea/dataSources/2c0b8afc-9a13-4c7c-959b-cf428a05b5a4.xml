@@ -784,14 +784,16 @@ false YEKT
 false Z
 false Zulu
 </TimeZones>
-      <StartupTime>1633714444</StartupTime>
+      <StartupTime>1635017615</StartupTime>
     </root>
     <database id="2" parent="1" name="my_db">
       <ObjectId>16394</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>630</IntrospectionStateNumber>
+      <IntrospectionStateNumber>711</IntrospectionStateNumber>
       <Current>1</Current>
-      <Relations>sequence|table|24595|16395|7
+      <Relations>sequence|table|32768|32770|1
+sequence|table|32823|16395|10
+sequence|table|24595|16395|7
 </Relations>
     </database>
     <database id="3" parent="1" name="postgres">
@@ -867,7 +869,7 @@ UC/10
 </Acl>
       <StateNumber>287</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>631</IntrospectionStateNumber>
+      <IntrospectionStateNumber>712</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="18" parent="2" name="plpgsql">
@@ -967,48 +969,116 @@ UC/10
       <HandlerId>335</HandlerId>
       <Type>index</Type>
     </access-method>
-    <sequence id="30" parent="17" name="tasks_id_seq">
+    <sequence id="30" parent="17" name="projects_id_seq">
+      <ObjectId>32768</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>665</StateNumber>
+      <DataType>integer|0s</DataType>
+    </sequence>
+    <sequence id="31" parent="17" name="tasks_id_seq">
       <ObjectId>24595</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>627</StateNumber>
       <DataType>integer|0s</DataType>
     </sequence>
-    <table id="31" parent="17" name="tasks">
+    <sequence id="32" parent="17" name="tasks_projectID_seq">
+      <ObjectId>32823</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>700</StateNumber>
+      <DataType>integer|0s</DataType>
+    </sequence>
+    <table id="33" parent="17" name="projects">
+      <ObjectId>32770</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>710</StateNumber>
+    </table>
+    <table id="34" parent="17" name="tasks">
       <ObjectId>16395</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>627</StateNumber>
+      <StateNumber>710</StateNumber>
     </table>
-    <column id="32" parent="31" name="taskType">
+    <column id="35" parent="33" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>665</StateNumber>
+      <DefaultExpression>nextval(&apos;projects_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="36" parent="33" name="name">
+      <Position>2</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>665</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="37" parent="33" name="projects_id_uindex">
+      <ObjectId>32777</ObjectId>
+      <StateNumber>666</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>0</CollationIds>
+      <ClassIds>1978</ClassIds>
+    </index>
+    <index id="38" parent="33" name="projects_pk">
+      <ObjectId>32779</ObjectId>
+      <StateNumber>668</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>0</CollationIds>
+      <ClassIds>1978</ClassIds>
+    </index>
+    <index id="39" parent="33" name="projects_name_uindex">
+      <ObjectId>32778</ObjectId>
+      <StateNumber>667</StateNumber>
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>100</CollationIds>
+      <CollationNames>default</CollationNames>
+      <ClassIds>3126</ClassIds>
+    </index>
+    <key id="40" parent="33" name="projects_pk">
+      <ObjectId>32780</ObjectId>
+      <StateNumber>668</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>projects_pk</UnderlyingIndexName>
+    </key>
+    <column id="41" parent="34" name="taskType">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>552</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="33" parent="31" name="pubDate">
+    <column id="42" parent="34" name="pubDate">
       <Position>3</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>544</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="34" parent="31" name="status">
+    <column id="43" parent="34" name="status">
       <Position>4</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>521</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="35" parent="31" name="text">
+    <column id="44" parent="34" name="text">
       <Position>5</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>535</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="36" parent="31" name="time">
+    <column id="45" parent="34" name="time">
       <Position>6</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>547</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="37" parent="31" name="id">
+    <column id="46" parent="34" name="id">
       <Position>7</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1016,18 +1086,24 @@ UC/10
       <DefaultExpression>nextval(&apos;tasks_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <index id="38" parent="31" name="tasks_id_uindex">
+    <column id="47" parent="34" name="projectID">
+      <Position>10</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>705</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <index id="48" parent="34" name="tasks_id_uindex">
       <ObjectId>24604</ObjectId>
-      <StateNumber>628</StateNumber>
+      <StateNumber>700</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <index id="39" parent="31" name="tasks_pk">
+    <index id="49" parent="34" name="tasks_pk">
       <ObjectId>24605</ObjectId>
-      <StateNumber>629</StateNumber>
+      <StateNumber>700</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
@@ -1035,12 +1111,24 @@ UC/10
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="40" parent="31" name="tasks_pk">
+    <key id="50" parent="34" name="tasks_pk">
       <ObjectId>24606</ObjectId>
       <StateNumber>629</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>tasks_pk</UnderlyingIndexName>
     </key>
+    <foreign-key id="51" parent="34" name="tasks_projects_id_fk">
+      <ObjectId>32834</ObjectId>
+      <StateNumber>710</StateNumber>
+      <ColNames>projectID</ColNames>
+      <RefTableId>32770</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>projects</RefTableName>
+      <RefKeyName>projects_pk</RefKeyName>
+      <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
+    </foreign-key>
   </database-model>
 </dataSource>

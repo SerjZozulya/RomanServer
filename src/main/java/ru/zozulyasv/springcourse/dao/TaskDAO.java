@@ -17,8 +17,8 @@ public class TaskDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Task> index() {
-        return jdbcTemplate.query("SELECT * FROM tasks", new TaskMapper());
+    public List<Task> index(long projectId) {
+        return jdbcTemplate.query("SELECT * FROM tasks WHERE \"projectID\" = ? ORDER BY id", new TaskMapper(), projectId);
     }
 
 /*    public Task show(int id) {
@@ -27,17 +27,17 @@ public class TaskDAO {
     }*/
 
     public void save(Task task){
-        jdbcTemplate.update("INSERT INTO tasks VALUES (?, ?, ?, ?, ?)",
-            task.getType(), task.getPubDate(), task.getStatus(), task.getText(), task.getTime());
+        jdbcTemplate.update("INSERT INTO tasks VALUES (?, ?, ?, ?, ?, ?)",
+            task.getType(), task.getPubDate(), task.getStatus(), task.getText(), task.getTime(), task.getProjectId());
     }
 
 /*    public void update(int id, Task updatedTask) {
         jdbcTemplate.update("UPDATE tasks SET text=?, status=?, taskType = ? WHERE id=?",
             updatedTask.getText(), updatedTask.getStatus(), updatedTask.getType(), id);
-    }
+    }*/
 
     public void delete(int id) {
         jdbcTemplate.update("DELETE  FROM tasks WHERE id=?", id);
 
-    }*/
+    }
 }
