@@ -26,9 +26,12 @@ public class TaskDAO {
             .stream().findAny().orElse(null);
     }*/
 
-    public void save(Task task){
-        jdbcTemplate.update("INSERT INTO tasks VALUES (?, ?, ?, ?, ?, ?)",
+    public long save(Task task){
+        jdbcTemplate.update("INSERT INTO tasks VALUES (?, ?, ?, ?, ?, DEFAULT, ?)",
             task.getType(), task.getPubDate(), task.getStatus(), task.getText(), task.getTime(), task.getProjectId());
+        long result = jdbcTemplate.queryForObject(
+            "SELECT  max(id) from tasks", Integer.class);
+        return result;
     }
 
 /*    public void update(int id, Task updatedTask) {
