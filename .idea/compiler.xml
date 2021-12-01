@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="MVCApp" options="-Xlint:unchecked" />
+      <module name="MVCApp" options="" />
     </option>
   </component>
 </project>
