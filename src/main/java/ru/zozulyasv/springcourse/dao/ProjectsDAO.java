@@ -21,9 +21,10 @@ public class ProjectsDAO {
         return jdbcTemplate.query("SELECT * FROM projects", new ProjectMapper());
     }
 
-    public void show(){
-        int a = 1;
-    }
+/*    public Task show(int id) {
+        return jdbcTemplate.query("SELECT * FROM tasks WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Task.class))
+            .stream().findAny().orElse(null);
+    }*/
 
     public void save(Project project){
         jdbcTemplate.update("INSERT INTO projects VALUES (?, ?)",
