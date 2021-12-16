@@ -21,6 +21,7 @@ public class TaskDAO {
         return jdbcTemplate.query("SELECT * FROM tasks WHERE \"projectID\" = ? ORDER BY id", new TaskMapper(), projectId);
     }
 
+
 /*    public Task show(int id) {
         return jdbcTemplate.query("SELECT * FROM tasks WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Task.class))
             .stream().findAny().orElse(null);

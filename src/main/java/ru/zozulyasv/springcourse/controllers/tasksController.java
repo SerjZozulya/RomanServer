@@ -17,8 +17,8 @@ public class tasksController {
     private final TaskDAO taskDAO;
 
     private class PostRequestResponseBody {
-        private long resultCode;
-        private long id;
+        private final long resultCode;
+        private final long id;
 
         public PostRequestResponseBody(long resultCode, long id) {
             this.resultCode = resultCode;

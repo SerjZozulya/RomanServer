@@ -14,7 +14,7 @@ import ru.zozulyasv.springcourse.models.UserData;
 public class AuthController {
 
     private UserData data;
-    private boolean resultCode = true;
+    private final boolean resultCode = true;
     private Message[] messages;
 
     @GetMapping("/me")

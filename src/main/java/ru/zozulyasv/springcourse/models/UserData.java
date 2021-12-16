@@ -37,6 +37,7 @@ public class UserData {
 
         this.id = id;
         this.email = email;
+
         this.login = login;
     }
 

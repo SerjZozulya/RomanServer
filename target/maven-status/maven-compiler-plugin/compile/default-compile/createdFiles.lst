@@ -1,0 +1,14 @@
+ru\zozulyasv\springcourse\models\UserData.class
+ru\zozulyasv\springcourse\dao\TaskDAO.class
+ru\zozulyasv\springcourse\models\Project.class
+ru\zozulyasv\springcourse\controllers\projectsController.class
+ru\zozulyasv\springcourse\controllers\AuthController.class
+ru\zozulyasv\springcourse\models\Message.class
+ru\zozulyasv\springcourse\controllers\tasksController$PostRequestResponseBody.class
+ru\zozulyasv\springcourse\dao\ProjectsDAO.class
+ru\zozulyasv\springcourse\dao\TaskMapper.class
+ru\zozulyasv\springcourse\config\SpringConfig.class
+ru\zozulyasv\springcourse\dao\ProjectMapper.class
+ru\zozulyasv\springcourse\models\Task.class
+ru\zozulyasv\springcourse\controllers\tasksController.class
+ru\zozulyasv\springcourse\config\Initializer.class
